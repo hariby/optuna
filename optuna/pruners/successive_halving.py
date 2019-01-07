@@ -111,7 +111,22 @@ class SuccessiveHalvingPruner(BasePruner):
             if not self._is_promotable(rung, value, all_trials):
                 return True
 
+            n_old_rungs = 2  # TODO(ohta): parameterize
+            for old_rung in range(rung - 1, rung - n_old_rungs - 1, -1):
+                if self._try_later_pruning(all_trials, trial, old_rung):
+                    return True
+
             rung += 1
+
+    def _try_later_pruning(self, all_trials, trial, rung):
+        # type: (List[FrozenTrial], FrozenTrial, int)
+
+        key = _completed_rung_key(rung)
+        if key not in trial.system_attrs:
+            return False
+
+        value = trial.system_attrs[key]
+        not self._is_promotable(rung, value, all_trials)
 
     def _is_promotable(self, rung, value, all_trials):
         # type: (int, float, List[FrozenTrial]) -> bool
