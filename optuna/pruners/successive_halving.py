@@ -119,7 +119,7 @@ class SuccessiveHalvingPruner(BasePruner):
             rung += 1
 
     def _try_later_pruning(self, all_trials, trial, rung):
-        # type: (List[FrozenTrial], FrozenTrial, int)
+        # type: (List[FrozenTrial], FrozenTrial, int) -> bool
 
         key = _completed_rung_key(rung)
         if key not in trial.system_attrs:
