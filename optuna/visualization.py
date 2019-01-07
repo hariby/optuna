@@ -1,6 +1,5 @@
 from optuna.study import Study  # NOQA
 from typing import List  # NOQA
-from typing import Optional  # NOQA
 
 try:
     import plotly.graph_objs as go

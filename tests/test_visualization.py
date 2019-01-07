@@ -8,7 +8,7 @@ def test_get_intermediate_values_data():
 
     study = create_study()
 
-    # Test with trial.
+    # Test with no trial.
     data = _get_intermediate_values_data(study)
     assert len(data) == 0
 
