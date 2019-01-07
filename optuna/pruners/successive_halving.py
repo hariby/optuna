@@ -126,7 +126,7 @@ class SuccessiveHalvingPruner(BasePruner):
             return False
 
         value = trial.system_attrs[key]
-        not self._is_promotable(rung, value, all_trials)
+        return not self._is_promotable(rung, value, all_trials)
 
     def _is_promotable(self, rung, value, all_trials):
         # type: (int, float, List[FrozenTrial]) -> bool
