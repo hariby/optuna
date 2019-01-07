@@ -20,13 +20,13 @@ def test_get_intermediate_values_data():
             trial.report(2.0, step=1)
         return 0.0
 
-    # Trials with a trial with intermediate values.
+    # Test with a trial with intermediate values.
     study.optimize(lambda t: objective(t, True), n_trials=1)
     data = _get_intermediate_values_data(study)
     assert len(data) == 1
     assert data[0].x == (0, 1)
     assert data[0].y == (1.0, 2.0)
 
-    # Trials with trials, one of which contains no intermediate value.
+    # Test with trials, one of which contains no intermediate value.
     study.optimize(lambda t: objective(t, False), n_trials=1)
     assert len(data) == 1
